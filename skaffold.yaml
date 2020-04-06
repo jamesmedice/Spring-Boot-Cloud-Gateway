@@ -1,0 +1,32 @@
+apiVersion: skaffold/v1alpha5
+kind: Config
+build:
+  artifacts:
+  - image: jamesmedice/seller
+    context: gcp-seller-service
+  - image: jamesmedice/business
+    context: gcp-business-service
+  - image: jamesmedice/director
+    context: gcp-director-service
+  - image: jamesmedice/enterprise
+    context: gcp-enterprise-service
+  - image: jamesmedice/routergateway
+    context: gcp-gateway-service
+  tagPolicy:
+    gitCommit: {}
+deploy:
+  kubectl:
+    manifests:
+    - ./kubernetes/mongodb-secret.yaml
+    - ./kubernetes/mongodb-deployment.yaml
+    - ./kubernetes/mongodb-configmap.yaml
+    - ./kubernetes/seller-deployment.yaml
+    - ./kubernetes/business-deployment.yaml
+    - ./kubernetes/director-deployment.yaml
+    - ./kubernetes/enterprise-deployment.yaml
+    - ./kubernetes/routergateway-deployment.yaml
+profiles:
+- name: james, dev, kubernetes, mongodb, mongo
+  build:
+    local:
+      push: false

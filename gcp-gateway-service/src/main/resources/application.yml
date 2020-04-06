@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: ambassador
+        uri: http://ambassador:8080/
+        predicates:
+        - Path=/ambassador/**
+      - id: business
+        uri: http://business:8080/
+        predicates:
+        - Path=/business/**
+      - id: director
+        uri: http://director:8080/
+        predicates:
+        - Path=/director/**
+      - id: enterprise
+        uri: http://enterprise:8080/
+        predicates:
+        - Path=/enterprise/**

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: director
+  labels:
+    app: director
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: director
+  template:
+    metadata:
+      labels:
+        app: director
+    spec:
+      containers:
+      - name: director
+        image: jamesmedice/director
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mongodtstore
+              key: database-name
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodtstore
+              key: database-user
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodtstore
+              key: database-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: director
+  labels:
+    app: director
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    app: director

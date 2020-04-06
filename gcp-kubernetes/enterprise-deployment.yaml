@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: entreprise
+  labels:
+    app: entreprise
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: entreprise
+  template:
+    metadata:
+      labels:
+        app: entreprise
+    spec:
+      containers:
+      - name: entreprise
+        image: jamesmedice/entreprise
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mongodtstore
+              key: database-name
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodtstore
+              key: database-user
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodtstore
+              key: database-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: entreprise
+  labels:
+    app: entreprise
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    app: entreprise

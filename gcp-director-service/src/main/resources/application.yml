@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /director
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: director
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb.default/${MONGO_DATABASE}
+      
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
