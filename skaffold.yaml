@@ -17,14 +17,14 @@ build:
 deploy:
   kubectl:
     manifests:
-    - ./kubernetes/mongodb-secret.yaml
-    - ./kubernetes/mongodb-deployment.yaml
-    - ./kubernetes/mongodb-configmap.yaml
-    - ./kubernetes/seller-deployment.yaml
-    - ./kubernetes/business-deployment.yaml
-    - ./kubernetes/director-deployment.yaml
-    - ./kubernetes/enterprise-deployment.yaml
-    - ./kubernetes/routergateway-deployment.yaml
+    - ./gcp-kubernetes/mongodb-secret.yaml
+    - ./gcp-kubernetes/mongodb-deployment.yaml
+    - ./gcp-kubernetes/mongodb-configmap.yaml
+    - ./gcp-kubernetes/seller-deployment.yaml
+    - ./gcp-kubernetes/business-deployment.yaml
+    - ./gcp-kubernetes/director-deployment.yaml
+    - ./gcp-kubernetes/enterprise-deployment.yaml
+    - ./gcp-kubernetes/routergateway-deployment.yaml
 profiles:
 - name: james, dev, kubernetes, mongodb, mongo
   build:

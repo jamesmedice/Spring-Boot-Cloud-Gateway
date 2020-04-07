@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: entreprise
+  name: enterprise
   labels:
-    app: entreprise
+    app: enterprise
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: entreprise
+      app: enterprise
   template:
     metadata:
       labels:
-        app: entreprise
+        app: enterprise
     spec:
       containers:
-      - name: entreprise
-        image: jamesmedice/entreprise
+      - name: enterprise
+        image: jamesmedice/enterprise
         ports:
         - containerPort: 8080
         env:
@@ -39,12 +39,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: entreprise
+  name: enterprise
   labels:
-    app: entreprise
+    app: enterprise
 spec:
   ports:
   - port: 8080
     protocol: TCP
   selector:
-    app: entreprise
+    app: enterprise
