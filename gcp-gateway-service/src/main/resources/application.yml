@@ -5,10 +5,6 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: ambassador
-        uri: http://ambassador:8080/
-        predicates:
-        - Path=/ambassador/**
       - id: business
         uri: http://business:8080/
         predicates:
@@ -21,3 +17,7 @@ spring:
         uri: http://enterprise:8080/
         predicates:
         - Path=/enterprise/**
+      - id: seller
+        uri: http://seller:8080/
+        predicates:
+        - Path=/seller/**
