@@ -14,16 +14,29 @@ kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceacc
 
 
 kubectl delete -n default deployment business
+
 kubectl delete -n default deployment director
+
 kubectl delete -n default deployment enterprise
+
 kubectl delete -n default deployment seller
+
 kubectl delete -n default deployment routergateway
+
 kubectl delete -n default deployment mongodtstore
+
 kubectl delete -n default service business
+
 kubectl delete -n default service director
+
 kubectl delete -n default service enterprise
+
 kubectl delete -n default service seller
+
 kubectl delete -n default service routergateway
+
 kubectl delete -n default service mongodtstore
+
 kubectl delete -n default configmap mongodtstore
+
 kubectl delete -n default secret mongodtstore
